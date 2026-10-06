@@ -1,0 +1,185 @@
+{
+	"title": "Sunshine 1 Program 2: Scenes for Basic Dialogs",
+	"phrases": [
+		{
+			"verb": "close",
+			"en": "close a book",
+			"ja": "本を閉める",
+			"emoji": "📕"
+		},
+		{
+			"verb": "come",
+			"en": "come to school",
+			"ja": "学校に来る",
+			"emoji": "🏫"
+		},
+		{
+			"verb": "cook",
+			"en": "cook lunch",
+			"ja": "昼ご飯を料理する",
+			"emoji": "🧑‍🍳"
+		},
+		{
+			"verb": "drink",
+			"en": "drink milk",
+			"ja": "牛乳を飲む",
+			"emoji": "🥛"
+		},
+		{
+			"verb": "drive",
+			"en": "drive a car",
+			"ja": "車を運転する",
+			"emoji": "🚘"
+		},
+		{
+			"verb": "eat",
+			"en": "eat pizza",
+			"ja": "ピザを食べる",
+			"emoji": "🍕"
+		},
+		{
+			"verb": "get",
+			"en": "get a CD",
+			"ja": "ＣＤを持ってくる",
+			"emoji": "💿"
+		},
+		{
+			"verb": "go",
+			"en": "go to Japan",
+			"ja": "日本に行く",
+			"emoji": "🗾"
+		},
+		{
+			"verb": "help",
+			"en": "help you",
+			"ja": "あなたを手伝う",
+			"emoji": "🆘"
+		},
+		{
+			"verb": "know",
+			"en": "know you",
+			"ja": "あなたを知っている",
+			"emoji": "🙋‍♂️"
+		},
+		{
+			"verb": "live",
+			"en": "live in Kokufu",
+			"ja": "国府に住んでいる",
+			"emoji": "🏠📍"
+		},
+		{
+			"verb": "make",
+			"en": "make sushi",
+			"ja": "寿司を作る",
+			"emoji": "🍣"
+		},
+		{
+			"verb": "open",
+			"en": "open the book",
+			"ja": "本を開ける",
+			"emoji": "📖"
+		},
+		{
+			"verb": "play",
+			"en": "play soccer",
+			"ja": "サッカをする",
+			"emoji": "⚽"
+		},
+		{
+			"verb": "play",
+			"en": "play the piano",
+			"ja": "ピアノを弾く",
+			"emoji": "🎹"
+		},
+		{
+			"verb": "read",
+			"en": "read a book",
+			"ja": "本を読む",
+			"emoji": "📖"
+		},
+		{
+			"verb": "run",
+			"en": "run",
+			"ja": "走る",
+			"emoji": "🏃‍♀️"
+		},
+		{
+			"verb": "speak",
+			"en": "speak English",
+			"ja": "英語を話す",
+			"emoji": "🗣️"
+		},
+		{
+			"verb": "study",
+			"en": "study Japanese",
+			"ja": "日本語を勉強する",
+			"emoji": "📚"
+		},
+		{
+			"verb": "swim",
+			"en": "swim in the sea",
+			"ja": "海に泳ぐ",
+			"emoji": "🏊‍♀️"
+		},
+		{
+			"verb": "take",
+			"en": "take out",
+			"ja": "待ち帰る",
+			"emoji": "🥡"
+		},
+		{
+			"verb": "talk",
+			"en": "talk in English",
+			"ja": "英語を喋る",
+			"emoji": "💬"
+		},
+		{
+			"verb": "teach",
+			"en": "teach English",
+			"ja": "英語を教える",
+			"emoji": "👩‍🏫"
+		},
+		{
+			"verb": "use",
+			"en": "use a pen",
+			"ja": "ペンを使う",
+			"emoji": "🖊️"
+		},
+		{
+			"verb": "wait",
+			"en": "wait for you",
+			"ja": "あなたは待つ",
+			"emoji": "⏳"
+		},
+		{
+			"verb": "walk",
+			"en": "walk to school",
+			"ja": "学校に歩く",
+			"emoji": "🚶‍♂️"
+		},
+		{
+			"verb": "want",
+			"en": "want a dog",
+			"ja": "犬が欲しい",
+			"emoji": "🐕"
+		},
+		{
+			"verb": "wash",
+			"en": "wash a car",
+			"ja": "車を洗う",
+			"emoji": "🧽🚗"
+		},
+		{
+			"verb": "watch",
+			"en": "watch TV",
+			"ja": "テレビを見る",
+			"emoji": "📺"
+		},
+		{
+			"verb": "write",
+			"en": "write kanji",
+			"ja": "漢字を書く",
+			"emoji": "✍️"
+		}
+	]
+}
