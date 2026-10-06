@@ -1,4 +1,4 @@
-#Matching Game
+# Matching Game
 
 This is a basic word matching game designed for Japanese students learning English as a second language.  
 
