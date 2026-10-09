@@ -28,7 +28,40 @@ body {
     text-align: center;
     padding-top: 3vh;
 }
-.title { margin: 0; font-size: 1.25rem; font-weight: 600; opacity: 0.7; }
+.title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    opacity: 0.7;
+    line-height: 1.5;      /* fixed, so Japanese characters can't make the line taller */
+    min-height: 1.5em;
+}
+
+.scores .score-box { padding: 2px 16px; text-align: center; }
+
+.list-select {
+    width: min(560px, 90vw);
+    height: 3.2rem;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-overflow: show;
+    text-align: center;
+    background: #fff;
+    border: 2px solid var(--verb);
+    border-radius: 12px;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 14px 20px;
+}
+.setting-label { text-align: right; font-size: 1.3rem; font-weight: 600; }
+
 .caption { margin: 0; font-size: 1.3rem; font-weight: 600; }
 .qr-code { padding: 16px; background: #fff; border-radius: 20px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); }
 
@@ -66,7 +99,7 @@ body {
     border-radius: 999px;
     box-shadow: 0 6px 0 #c2410c;
 }
-.score-box.pop { animation: pop 0.35s; }
+.pop { animation: pop 0.35s; }
 
 /* ---------- board and cards ---------- */
 .board {
@@ -95,9 +128,10 @@ body {
     user-select: none;
     transition: transform 0.08s, box-shadow 0.08s, background 0.2s;
 }
-.card.verb { --side-colour: var(--verb); }
-.card.object { --side-colour: var(--object); }
-.card:active { transform: translateY(4px); box-shadow: 0 0 0 var(--side-colour); }
+.card.left { --side-colour: var(--verb); }
+.card.right { --side-colour: var(--object); }
+.card.picture-card { font-size: 3rem; }
+.card:not(:disabled):active { transform: translateY(4px); box-shadow: 0 0 0 var(--side-colour); }
 
 .picture { font-size: 2rem; line-height: 1; }
 .text { display: flex; flex-direction: column; }
@@ -106,7 +140,7 @@ body {
 
 .card.selected { background: #fef9c3; transform: scale(1.04); }
 .card.matched { background: var(--pair-colour); border-color: var(--pair-colour); box-shadow: none; }
-.card:disabled { color: var(--text); }
+.card:disabled { color: var(--text); pointer-events: none; }
 .card.wrong { background: #fee2e2; animation: shake 0.4s; }
 .card.gone {
     opacity: 0;
@@ -166,4 +200,135 @@ body {
     25%  { opacity: 1; transform: scale(1.05); }
     70%  { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(1); }
+}
+
+/* ---------- setup screen ---------- */
+.summary { margin: 0; font-size: 1.3rem; font-weight: 600; }
+.teacher-only { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.stepper { display: flex; align-items: center; gap: 12px; }
+.step-button {
+    width: 48px;
+    height: 48px;
+    font: inherit;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--verb);
+    border: none;
+    border-radius: 50%;
+    touch-action: manipulation;
+}
+.step-button:active { transform: scale(0.92); }
+.step-value {
+    width: 3ch;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.level-note { margin: 0; opacity: 0.7; }
+.settings-link { opacity: 0.5; }
+
+/* ---------- timer ---------- */
+.timer { width: min(500px, 80%); height: 14px; background: #e5e7eb; border-radius: 999px; overflow: hidden; }
+.timer-fill { height: 100%; background: #22c55e; transform-origin: left; }
+.timer-fill.run {
+    animation-name: drain;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes drain {
+    0%   { transform: scaleX(1); background: #22c55e; }
+    60%  { background: #facc15; }
+    100% { transform: scaleX(0); background: #ef4444; }
+}
+
+.card.timeup { opacity: 0.55; border-style: dashed; }
+
+/* ---------- scores ---------- */
+.scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* two equal columns, so the gap sits dead centre */
+    align-items: center;
+    gap: 24px;
+    width: min(560px, 100%);
+}
+.round-score-box {
+    padding: 2px 28px;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    box-shadow: 0 6px 0 #1d4ed8;
+}
+
+/* ---------- between rounds ---------- */
+.round-summary {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40vh;
+    text-align: center;
+}
+.summary-heading { margin: 0; font-size: 2rem; font-weight: 700; }
+.summary-points {
+    margin: 0;
+    font-size: 7rem;
+    font-weight: 800;
+    color: #f97316;
+    animation: bounce-in 0.6s ease-out;
+}
+@keyframes bounce-in {
+    0%   { transform: scale(0.3); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* the next-round button doubles as a countdown bar */
+.next-round { position: relative; overflow: hidden; isolation: isolate; min-width: 280px; }
+.next-round::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 0;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: -1;
+}
+.next-round.counting::before {
+    animation: fill-bar var(--countdown, 6s) linear forwards;
+}
+@keyframes fill-bar { to { width: 100%; } }
+
+/* ---------- end screen ---------- */
+.end-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.big-button.secondary { background: #6b7280; box-shadow: 0 5px 0 #374151; }
+
+/* ---------- near misses ---------- */
+.card.near { background: #fef3c7; animation: shake 0.4s; }
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    max-width: 90%;
+    padding: 14px 28px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    color: #78350f;
+    background: #fde68a;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+.toast.show { animation: toast-pop 2.4s ease-out; }
+@keyframes toast-pop {
+    0%   { opacity: 0; transform: translate(-50%, 20px); }
+    10%  { opacity: 1; transform: translate(-50%, 0); }
+    85%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 0); }
 }

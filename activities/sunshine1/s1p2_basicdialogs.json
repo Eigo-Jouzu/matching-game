@@ -181,5 +181,32 @@
 			"ja": "漢字を書く",
 			"emoji": "✍️"
 		}
+	],
+	"alsoValid": [
+		"want *",
+		"get *",
+		"take *",
+		"walk a dog",
+		"read kanji",
+		"write a book",
+		"use kanji",
+		"use a car",
+		"study English",
+		"speak Japanese",
+		"teach Japanese",
+		"eat sushi",
+		"make pizza",
+		"eat lunch",
+		"make lunch",
+		"play a CD",
+		"watch soccer",
+		"live in Japan",
+		"come to Kokufu",
+		"go to school",
+		"go to Kokufu",
+		"write English",
+		"write Japanese",
+		"close the book",
+		"open a book"
 	]
 }

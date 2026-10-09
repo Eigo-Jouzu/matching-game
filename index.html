@@ -1,41 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matching Game</title>
-    <link rel="stylesheet" href="assets/style.css" />
-    <script src="assets/qrcode.min.js" defer></script>
-    <script src="assets/main.js" defer></script>
-  </head>
-  <body>
-    <section class="screen start-screen">
-      <h1 class="title">Loading…</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matching Game</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/qrcode.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
+</head>
+<body>
+  <section class="screen start-screen">
+    <h1 class="title">Loading…</h1>
+    <p class="summary"></p>
+    <div class="teacher-only" hidden>
+      <select class="list-select" aria-label="Word list"></select>
+      <div class="settings-grid">
+        <span class="setting-label">Rounds</span>
+        <div class="stepper">
+          <button class="step-button" data-setting="rounds" data-change="-1">−</button>
+          <span class="step-value rounds-value"></span>
+          <button class="step-button" data-setting="rounds" data-change="1">+</button>
+        </div>
+        <span class="setting-label">Level</span>
+        <div class="stepper">
+          <button class="step-button" data-setting="level" data-change="-1">−</button>
+          <span class="step-value level-value"></span>
+          <button class="step-button" data-setting="level" data-change="1">+</button>
+        </div>
+      </div>
+      <p class="level-note"></p>
       <div class="qr-code"></div>
       <p class="caption">Scan to play! QRコードをよみとってね</p>
-      <button class="big-button play-button" disabled>Play ▶</button>
-    </section>
-
-    <section class="screen game-screen" hidden>
-      <div class="hud">
-        <div class="round-box">
-          Round <span class="round">1</span> /
-          <span class="total-rounds"></span>
-        </div>
-        <div class="score-box">⭐ <span class="score">0</span></div>
-      </div>
-      <main class="board"></main>
-      <button class="big-button next-round" hidden>Next round ▶</button>
-    </section>
-
-    <section class="screen end-screen" hidden>
-      <h2 class="end-message"></h2>
-      <p class="final-score"></p>
-      <button class="big-button play-again">Play again ↻</button>
-    </section>
-
-    <div class="feedback" aria-hidden="true">
-      <div class="mark"><span class="points"></span></div>
     </div>
-  </body>
+    <button class="big-button play-button" disabled>Play ▶</button>
+    <a class="settings-link" href="./" hidden>⚙ Settings</a>
+  </section>
+  <section class="screen game-screen" hidden>
+    <div class="hud">
+      <div class="round-box">Round <span class="round">1</span> / <span class="total-rounds"></span></div>
+      <div class="scores">
+        <div class="score-box round-score-box">+<span class="round-score">0</span></div>
+        <div class="score-box total-score-box">⭐ <span class="score">0</span></div>
+      </div>
+      <div class="timer" hidden>
+        <div class="timer-fill"></div>
+      </div>
+    </div>
+    <main class="board"></main>
+    <button class="big-button next-round" hidden>Next round ▶</button>
+  </section>
+  <section class="screen end-screen" hidden>
+    <h2 class="end-message"></h2>
+    <p class="final-score"></p>
+    <div class="end-buttons">
+      <button class="big-button secondary menu-button">Menu</button>
+      <button class="big-button play-again">Play again ↻</button>
+    </div>
+  </section>
+  <div class="feedback" aria-hidden="true">
+    <div class="mark"><span class="points"></span></div>
+  </div>
+  <div class="toast" aria-hidden="true"></div>
+</body>
 </html>

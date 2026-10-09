@@ -5,6 +5,11 @@
             "id": "s1p2",
             "name": "Sunshine 1 Program 2: Scenes for Basic Dialogs",
             "filepath": "activities/sunshine1/s1p2_basicdialogs.json"
+        },
+        {
+            "id": "sj5_oct",
+            "name": "Junior Sunshine 5: October's Words （十月の単語）",
+            "filepath": "activities/sunshinej5/sj5_oct.json"
         }
     ]
 }
