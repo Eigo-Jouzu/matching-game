@@ -1,6 +1,7 @@
 {
 	"title": "Sunshine 1 Program 2: Scenes for Basic Dialogs",
-	"phrases": [
+	"type": "phrases",
+	"items": [
 		{
 			"verb": "close",
 			"en": "close a book",
