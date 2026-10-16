@@ -18,6 +18,8 @@ const state = {
     title: "",
     items: [],              // every pair in the word list
     alsoValid: new Set(),   // extra sensible combinations, from the word list
+    listUrl: null,          // where the current word list file lives (for finding images)
+    imageFolder: "",        // optional folder for images, relative to the word list file
     score: 0,
     roundScore: 0,
     maxScore: 0,
@@ -107,6 +109,45 @@ function keyFromText(text) {
     return verb.toLowerCase() + "|" + nounOf(rest.join(" "));
 }
 
+// ---------- images ----------
+function isImageFile(value) {
+    return /\.(png|jpe?g|gif|webp|svg)$/i.test(value);
+}
+
+// Image names in the JSON are relative to the word list file itself
+function imageUrl(file) {
+    return new URL(state.imageFolder + file, state.listUrl).href;
+}
+
+function makeImage(file, small) {
+    const img = document.createElement("img");
+    img.className = small ? "card-image small" : "card-image";
+    img.src = imageUrl(file);
+    img.alt = "";               // empty on purpose: a description would give the answer away
+    img.draggable = false;
+    return img;
+}
+
+// the small picture shown beside a word: an image file or an emoji
+function makeSmallPicture(value) {
+    if (isImageFile(value)) return makeImage(value, true);
+    const span = document.createElement("span");
+    span.className = "picture";
+    span.textContent = value;
+    return span;
+}
+
+// loads every image up front so cards don't pop in when a round starts
+function preloadImages() {
+    for (const item of state.items) {
+        for (const value of [item.picture, item.right]) {
+            if (value && isImageFile(value)) {
+                new Image().src = imageUrl(value);
+            }
+        }
+    }
+}
+
 // ---------- speech ----------
 function speak(text, interrupt = true) {
     if (interrupt) speechSynthesis.cancel();
@@ -162,18 +203,24 @@ async function loadList(listId) {
     }
     const response = await fetch(entry.filepath);
     if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
+        throw new Error("HTTP error " + response.status + " for " + entry.filepath);
     }
     const data = await response.json();
     state.settings.listId = listId;
     state.title = data.title;
+    state.listUrl = new URL(entry.filepath, document.baseURI);
+    state.imageFolder = data.imageFolder ?? "";
     state.items = prepareItems(data);
     state.alsoValid = new Set((data.alsoValid ?? []).map(keyFromText));
+    preloadImages();
     playButton.disabled = false;
 }
 
 // Every item ends up in the same shape, whatever type of list it came from
 function makeItem(id, f) {
+    if (typeof f.left !== "string" || typeof f.right !== "string") {
+        throw new Error("Item " + (id + 1) + " is missing its text (check the field names)");
+    }
     return {
         id: id,
         left: f.left,
@@ -183,7 +230,7 @@ function makeItem(id, f) {
         speakLeft: f.speakLeft ?? f.left,               // what each card says when tapped
         speakRight: f.speakRight ?? f.right,            // ("" means silent)
         whole: f.whole ?? (f.left + " " + f.right),     // said when the pair is matched
-        emoji: f.emoji ?? null,
+        picture: f.picture ?? null,                     // small picture: an emoji or an image file
         ja: f.ja ?? null,
         rightIsPicture: f.rightIsPicture ?? false,
         lastUsed: null,
@@ -200,7 +247,7 @@ function itemFromPhrase(p, index) {
         leftKey: p.verb.toLowerCase(),
         rightKey: nounOf(object),
         whole: p.en,
-        emoji: p.emoji,
+        picture: p.picture ?? p.emoji,
         ja: p.ja
     });
 }
@@ -209,7 +256,7 @@ function prepareItems(data) {
     const type = data.type ?? "phrases";
 
     if (type === "phrases") {
-        return data.phrases
+        return data.items
             .map(itemFromPhrase)
             .filter(item => item !== null);
     }
@@ -220,16 +267,16 @@ function prepareItems(data) {
                 left: entry.left,
                 right: entry.right,
                 whole: entry.left + ", " + entry.right,
-                emoji: entry.emoji,
+                picture: entry.picture ?? entry.emoji,
                 ja: entry.ja
             });
         }
         if (type === "pictures") {
             return makeItem(index, {
-                left: entry.word,
-                right: entry.emoji,
+                left: entry.phrase,
+                right: entry.picture ?? entry.emoji,
                 speakRight: "",                          // silent, or it would give the answer away
-                whole: entry.word,
+                whole: entry.phrase,
                 ja: entry.ja,
                 rightIsPicture: true
             });
@@ -240,7 +287,7 @@ function prepareItems(data) {
                 right: entry.ja,
                 speakRight: "",
                 whole: entry.en,
-                emoji: entry.emoji
+                picture: entry.picture ?? entry.emoji
             });
         }
         throw new Error("Unknown list type: " + type);
@@ -300,20 +347,21 @@ function makeCard(item, side) {
     const isPicture = side === "right" && item.rightIsPicture;
     if (isPicture) card.classList.add("picture-card");
 
-    if (side === "right" && item.emoji && !isPicture) {
-        const picture = document.createElement("span");
-        picture.className = "picture";
-        picture.textContent = item.emoji;
-        card.append(picture);
+    if (side === "right" && item.picture && !isPicture) {
+        card.append(makeSmallPicture(item.picture));
     }
 
     const text = document.createElement("span");
     text.className = "text";
 
-    const label = document.createElement("span");
-    label.className = "word";
-    label.textContent = side === "left" ? item.left : item.right;
-    text.append(label);
+    if (isPicture && isImageFile(item.right)) {
+        text.append(makeImage(item.right, false));      // a big picture card made from an image
+    } else {
+        const label = document.createElement("span");
+        label.className = "word";
+        label.textContent = side === "left" ? item.left : item.right;
+        text.append(label);
+    }
 
     if (item.ja) {
         const hint = document.createElement("span");
@@ -683,8 +731,13 @@ function wireControls() {
     }
     listSelect.value = state.settings.listId;
     listSelect.addEventListener("change", async () => {
-        await loadList(listSelect.value);
-        drawSettings();
+        try {
+            await loadList(listSelect.value);
+            drawSettings();
+        } catch (error) {
+            console.error(error);
+            titleElement.textContent = "Couldn't load: " + error.message;
+        }
     });
 
     document.querySelectorAll(".step-button").forEach(button => {
@@ -713,7 +766,7 @@ async function init() {
         drawSettings();
     } catch (error) {
         console.error(error);
-        titleElement.textContent = "Couldn't load the activity";
+        titleElement.textContent = "Couldn't load the activity: " + error.message;
     }
 }
 
