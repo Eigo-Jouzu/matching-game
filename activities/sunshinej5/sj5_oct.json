@@ -1,0 +1,106 @@
+{
+    "title": "Junior Sunshine 5: October's Words （十月の単語）",
+    "items": [
+        {
+            "phrase": "book",
+            "picture": "📖",
+            "ja": "本"
+        },
+        {
+            "phrase": "classroom",
+            "picture": "🧑‍🏫🏫",
+            "ja": "教室"
+        },
+        {
+            "phrase": "computer",
+            "picture": "💻",
+            "ja": "コンピューター"
+        },
+        {
+            "phrase": "field trip",
+            "picture": "🚞",
+            "ja": "修学旅行"
+        },
+        {
+            "phrase": "graduation ceremony",
+            "picture": "🧑‍🎓🥳",
+            "ja": "卒業式"
+        },
+        {
+            "phrase": "gym",
+            "picture": "💪",
+            "ja": "体育館"
+        },
+        {
+            "phrase": "homework",
+            "picture": "🏠📝",
+            "ja": "宿題"
+        },
+        {
+            "phrase": "ink",
+            "picture": "🫟",
+            "ja": "墨"
+        },
+        {
+            "phrase": "library",
+            "picture": "📚🏢",
+            "ja": "図書館"
+        },
+        {
+            "phrase": "notebook",
+            "picture": "🗒️",
+            "ja": "ノート"
+        },
+        {
+            "phrase": "pen",
+            "picture": "🖋️",
+            "ja": "ペン"
+        },
+        {
+            "phrase": "pencil",
+            "picture": "✏️",
+            "ja": "鉛筆"
+        },
+        {
+            "phrase": "restroom",
+            "picture": "🚻🚽",
+            "ja": "お手洗い"
+        },
+        {
+            "phrase": "ruler",
+            "picture": "📏",
+            "ja": "物指"
+        },
+        {
+            "phrase": "school",
+            "picture": "🏫",
+            "ja": "学校"
+        },
+        {
+            "phrase": "scissors",
+            "picture": "️✂",
+            "ja": "ハサミ"
+        },
+        {
+            "phrase": "sports day",
+            "picture": "🚴🏊🏂☀️",
+            "ja": "運動会"
+        },
+        {
+            "phrase": "student",
+            "picture": "🧑‍🎓",
+            "ja": "学生"
+        },
+        {
+            "phrase": "tablet",
+            "picture": "📱",
+            "ja": "タブレット"
+        },
+        {
+            "phrase": "textbook",
+            "picture": "🗨️📕",
+            "ja": "教科書"
+        }
+    ],
+    "alsoValid": []
+}
