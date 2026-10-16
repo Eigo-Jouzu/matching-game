@@ -1,105 +1,106 @@
 {
     "title": "Junior Sunshine 5: October's Words （十月の単語）",
     "type": "pictures",
+    "imageFolder": "sj5_oct/",
     "items": [
         {
             "phrase": "book",
-            "picture": "📖",
+            "picture": "book.png",
             "ja": "本"
         },
         {
             "phrase": "classroom",
-            "picture": "🧑‍🏫🏫",
+            "picture": "classroom.png",
             "ja": "教室"
         },
         {
             "phrase": "computer",
-            "picture": "💻",
+            "picture": "computer.png",
             "ja": "コンピューター"
         },
         {
             "phrase": "field trip",
-            "picture": "🚞",
+            "picture": "fieldtrip.png",
             "ja": "修学旅行"
         },
         {
             "phrase": "graduation ceremony",
-            "picture": "🧑‍🎓🥳",
+            "picture": "graduation.png",
             "ja": "卒業式"
         },
         {
             "phrase": "gym",
-            "picture": "💪",
+            "picture": "gym.png",
             "ja": "体育館"
         },
         {
             "phrase": "homework",
-            "picture": "🏠📝",
+            "picture": "homework.png",
             "ja": "宿題"
         },
         {
             "phrase": "ink",
-            "picture": "🫟",
+            "picture": "ink.png",
             "ja": "墨"
         },
         {
             "phrase": "library",
-            "picture": "📚🏢",
+            "picture": "library.png",
             "ja": "図書館"
         },
         {
             "phrase": "notebook",
-            "picture": "🗒️",
+            "picture": "notebook.png",
             "ja": "ノート"
         },
         {
             "phrase": "pen",
-            "picture": "🖋️",
+            "picture": "pen.png",
             "ja": "ペン"
         },
         {
             "phrase": "pencil",
-            "picture": "✏️",
+            "picture": "pencil.png",
             "ja": "鉛筆"
         },
         {
             "phrase": "restroom",
-            "picture": "🚻🚽",
+            "picture": "restroom.png",
             "ja": "お手洗い"
         },
         {
             "phrase": "ruler",
-            "picture": "📏",
+            "picture": "ruler.png",
             "ja": "物指"
         },
         {
             "phrase": "school",
-            "picture": "🏫",
+            "picture": "school.png",
             "ja": "学校"
         },
         {
             "phrase": "scissors",
-            "picture": "️✂",
+            "picture": "scissors.png",
             "ja": "ハサミ"
         },
         {
             "phrase": "sports day",
-            "picture": "🚴🏊🏂☀️",
+            "picture": "sportsday.png",
             "ja": "運動会"
         },
         {
             "phrase": "student",
-            "picture": "🧑‍🎓",
+            "picture": "student.png",
             "ja": "学生"
         },
         {
             "phrase": "tablet",
-            "picture": "📱",
+            "picture": "tablet.png",
             "ja": "タブレット"
         },
         {
             "phrase": "textbook",
-            "picture": "🗨️📕",
+            "picture": "textbook.png",
             "ja": "教科書"
         }
     ],
